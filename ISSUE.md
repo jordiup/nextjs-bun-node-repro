@@ -1,3 +1,20 @@
+### Verify canance / related
+
+Follows up on #91691 (closed for lack of repro). This issue provides a minimal public reproduction.
+
+### Summary
+
+Upgrading from Next.js 16.1.6 to 16.2.0 causes Vercel to **switch all serverless functions from Bun 1.x to Node.js 24.x**, despite `bunVersion: "1.x"` being set in `vercel.json`. The deployment builds successfully but every route returns `500 Internal Server Error` at runtime because Bun globals (`Bun.redis`) are evaluated in a Node.js context where `Bun` is not defined.
+
+The only change between the two deployments is the `next` version. Same code, same config, same `vercel.json`.
+
+| | Next.js 16.1.6 | Next.js 16.2.0 |
+|---|---|---|
+| **Runtime detected** | Bun 1.x | Node.js 24.x |
+| **Bundle size** | 506-733 kB | 715 kB |
+| **Status** | 200 OK | 500 Internal Server Error |
+| **Functions count** | 2 (Page + API) | 4 (Page + API + _error + data) |
+
 ### Link to the code that reproduces this issue
 
 https://github.com/jordiup/nextjs-bun-node-repro
