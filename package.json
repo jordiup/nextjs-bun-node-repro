@@ -1,0 +1,5 @@
+{
+  "name": "nextjs-bun-node-repro",
+  "private": true,
+  "workspaces": ["packages/*"]
+}

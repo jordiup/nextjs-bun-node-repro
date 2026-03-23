@@ -1,0 +1,20 @@
+{
+  "name": "@repro/app-16-1",
+  "private": true,
+  "scripts": {
+    "dev": "bun --bun next dev -p 3001",
+    "build": "bun --bun next build --turbopack"
+  },
+  "dependencies": {
+    "@repro/shared": "workspace:*",
+    "next": "16.1.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "typescript": "^5.7.0"
+  }
+}
